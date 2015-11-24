@@ -32,6 +32,11 @@
 
 - (void)updateWithImageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName text:(NSString *)text align:(E_RX_CheckViewAlign)align
 {
+    [self updateWithImageName:imageName selectedImageName:selectedImageName text:text align:align offset:0];
+}
+
+- (void)updateWithImageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName text:(NSString *)text align:(E_RX_CheckViewAlign)align offset:(CGFloat)offset
+{
     [self.vBg removeFromSuperview];
     self.imageName = imageName;
     self.selectedImageName = selectedImageName;
@@ -48,7 +53,7 @@
     
     CGFloat ivY = (height - ivHeight) / 2.0f;
     CGFloat lblY = (height - lblHeight) / 2.0f;
-    CGFloat lblX = ivWidth;
+    CGFloat lblX = ivWidth + offset;
     
     self.e_RX_CheckViewAlign = align;
     
