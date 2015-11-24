@@ -25,6 +25,9 @@ typedef enum E_RX_CheckViewAlign {
 
 - (void)updateWithImageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName text:(NSString *)text align:(E_RX_CheckViewAlign)align offset:(CGFloat)offset;
 
+- (void)refreshView;
+
+
 @property (nonatomic, assign) BOOL selected;
 
 @end

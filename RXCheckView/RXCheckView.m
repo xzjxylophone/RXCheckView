@@ -19,6 +19,8 @@
 
 @property (nonatomic, assign) E_RX_CheckViewAlign e_RX_CheckViewAlign;
 
+@property (nonatomic, assign) CGFloat offset;
+
 @end
 
 @implementation RXCheckView
@@ -41,8 +43,16 @@
     self.imageName = imageName;
     self.selectedImageName = selectedImageName;
     self.lbl.text = text;
+    self.e_RX_CheckViewAlign = align;
+    self.offset = offset;
+}
+
+- (void)refreshView
+{
+    [self.vBg removeFromSuperview];
+    
     [self.lbl sizeToFit];
-    UIImage *image = [UIImage imageNamed:imageName];
+    UIImage *image = [UIImage imageNamed:self.imageName];
     CGFloat ivWidth = image.size.width;
     CGFloat ivHeight = image.size.height;
     
@@ -53,9 +63,9 @@
     
     CGFloat ivY = (height - ivHeight) / 2.0f;
     CGFloat lblY = (height - lblHeight) / 2.0f;
-    CGFloat lblX = ivWidth + offset;
+    CGFloat lblX = ivWidth + self.offset;
     
-    self.e_RX_CheckViewAlign = align;
+    self.e_RX_CheckViewAlign = self.e_RX_CheckViewAlign;
     
     
     self.iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, ivY, ivWidth, ivHeight)];
@@ -64,9 +74,9 @@
     [self.vBg addSubview:self.iv];
     [self.vBg addSubview:self.lbl];
     
+    
+    
     [self addSubview:self.vBg];
-    
-    
 }
 
 - (void)layoutSubviews
