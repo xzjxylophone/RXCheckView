@@ -13,7 +13,6 @@
 @property (nonatomic, copy) NSString *imageName;
 @property (nonatomic, copy) NSString *selectedImageName;
 
-@property (nonatomic, strong) UIImageView *iv;
 
 @property (nonatomic, strong) UIView *vBg;
 

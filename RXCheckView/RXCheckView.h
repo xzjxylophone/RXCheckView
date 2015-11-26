@@ -18,6 +18,8 @@ typedef enum E_RX_CheckViewAlign {
 @interface RXCheckView : UIView
 
 @property (nonatomic, strong) UILabel *lbl;
+@property (nonatomic, strong) UIImageView *iv;
+
 
 - (void)updateWithImageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName text:(NSString *)text align:(E_RX_CheckViewAlign)align;
 
