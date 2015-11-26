@@ -138,11 +138,11 @@
     }
     return self;
 }
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-    [self initialize];
-}
+//- (void)awakeFromNib
+//{
+//    [super awakeFromNib];
+//    [self initialize];
+//}
 
 - (void)initialize
 {
