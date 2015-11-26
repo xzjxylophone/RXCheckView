@@ -14,9 +14,48 @@
 
 @implementation MainViewController
 
+
+
+- (UIImage *)rx_imageWithSize:(CGSize)size color:(UIColor *)color
+{
+    UIImage *img = nil;
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, color.CGColor);
+    CGContextFillRect(context, rect);
+    img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
+
+- (IBAction)btnOK:(id)sender
+{
+    BOOL hidden = [UIApplication sharedApplication].statusBarHidden;
+    [[UIApplication sharedApplication] setStatusBarHidden:!hidden withAnimation:UIStatusBarAnimationSlide];
+    
+    CGRect rect = self.navigationController.navigationBar.frame;
+    rect.origin.y = 20;
+    self.navigationController.navigationBar.frame = rect;
+    
+    
+    CGRect frame1 = self.view.frame;
+    frame1.origin.y = 64;
+    self.view.frame = frame1;
+    
+    UIImage *bgImage = [self rx_imageWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 44) color:[UIColor redColor]];
+    [self.navigationController.navigationBar setBackgroundImage:bgImage forBarMetrics:UIBarMetricsCompact];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (void)didReceiveMemoryWarning {

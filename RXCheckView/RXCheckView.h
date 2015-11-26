@@ -28,6 +28,10 @@ typedef enum E_RX_CheckViewAlign {
 - (void)refreshView;
 
 
+// 点击事件是否有效, 默认是YES
+@property (nonatomic, assign) BOOL tapEnable;
+
+// 默认是 NO
 @property (nonatomic, assign) BOOL selected;
 
 @end

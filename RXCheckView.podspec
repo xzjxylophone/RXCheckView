@@ -3,7 +3,7 @@
 
 Pod::Spec.new do |s|
   s.name     = "RXCheckView"
-  s.version  = "0.3"
+  s.version  = "0.4"
   s.license  = "MIT"
   s.summary  = "RXCheckView is a simple check view"
   s.homepage = "https://github.com/xzjxylophone/RXCheckView"

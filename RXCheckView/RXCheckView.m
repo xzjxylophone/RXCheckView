@@ -21,10 +21,28 @@
 
 @property (nonatomic, assign) CGFloat offset;
 
+
+@property (nonatomic, strong) UITapGestureRecognizer *tgr;
+
 @end
 
 @implementation RXCheckView
 
+
+- (void)setTapEnable:(BOOL)tapEnable
+{
+    _tapEnable = tapEnable;
+    if (tapEnable) {
+        [self addGestureRecognizer:self.tgr];
+    } else {
+        [self removeGestureRecognizer:self.tgr];
+    }
+}
+
+- (void)tgrAction:(id)sender
+{
+    self.selected = !self.selected;
+}
 - (void)setSelected:(BOOL)selected
 {
     _selected = selected;
@@ -45,6 +63,7 @@
     self.lbl.text = text;
     self.e_RX_CheckViewAlign = align;
     self.offset = offset;
+    [self refreshView];
 }
 
 - (void)refreshView
@@ -75,6 +94,7 @@
     [self.vBg addSubview:self.lbl];
     
     
+    self.selected = self.selected;
     
     [self addSubview:self.vBg];
 }
@@ -111,7 +131,13 @@
     return self;
 }
 
-
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self initialize];
+    }
+    return self;
+}
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -121,7 +147,11 @@
 - (void)initialize
 {
     self.lbl = [[UILabel alloc] initWithFrame:CGRectZero];
+    self.selected = NO;
+    self.tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tgrAction:)];
+    self.tapEnable = YES;
 }
+
 
 
 

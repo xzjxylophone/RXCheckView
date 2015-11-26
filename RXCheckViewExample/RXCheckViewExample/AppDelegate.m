@@ -18,10 +18,37 @@
 @end
 
 @implementation AppDelegate
+
+
+- (UIImage *)rx_imageWithSize:(CGSize)size color:(UIColor *)color
+{
+    UIImage *img = nil;
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, color.CGColor);
+    CGContextFillRect(context, rect);
+    img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
 - (void)showMain
 {
     UIViewController *vc = [[MainViewController alloc] init];
-    self.mainNC = [[UINavigationController alloc] initWithRootViewController:vc];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    
+    nc.navigationBar.translucent = NO;
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, -20, [UIScreen mainScreen].bounds.size.width, 20)];
+    view.backgroundColor = [UIColor redColor];
+    [nc.navigationBar addSubview:view];
+    
+    UIImage *bgImage = [self rx_imageWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 44) color:[UIColor redColor]];
+    [nc.navigationBar setBackgroundImage:bgImage forBarMetrics:UIBarMetricsDefault];
+    
+
+    self.mainNC = nc;
+    
     self.window.rootViewController = self.mainNC;
 }
 
