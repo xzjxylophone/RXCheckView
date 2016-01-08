@@ -16,6 +16,10 @@
 
 @property (nonatomic, strong) UIView *backgroundView;
 
+@property (nonatomic, strong) UILabel *label;
+@property (nonatomic, strong) UIImageView *imageView;
+
+
 @property (nonatomic, assign) E_RX_CheckViewAlign e_RX_CheckViewAlign;
 
 @property (nonatomic, assign) CGFloat offset;
@@ -82,9 +86,7 @@
     CGFloat ivY = (height - ivHeight) / 2.0f;
     CGFloat lblY = (height - lblHeight) / 2.0f;
     CGFloat lblX = ivWidth + self.offset;
-    
-    self.e_RX_CheckViewAlign = self.e_RX_CheckViewAlign;
-    
+        
     
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, ivY, ivWidth, ivHeight)];
     self.label.frame = CGRectMake(lblX, lblY, lblWidth, lblHeight);
@@ -95,12 +97,7 @@
     
     self.selected = self.selected;
     
-    [self addSubview:self.backgroundView];
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
+    
     CGFloat width = self.frame.size.width;
     CGFloat vBgX = 0;
     switch (self.e_RX_CheckViewAlign) {
@@ -119,7 +116,11 @@
     CGRect vBgFrame = self.backgroundView.frame;
     vBgFrame.origin.x = vBgX;
     self.backgroundView.frame = vBgFrame;
+    
+    [self addSubview:self.backgroundView];
 }
+
+
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -144,6 +145,9 @@
     self.label = [[UILabel alloc] initWithFrame:CGRectZero];
     self.selected = NO;
     self.tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tgrAction:)];
+    
+    self.backgroundColor = [UIColor clearColor];
+    self.label.backgroundColor = [UIColor clearColor];
     self.tapEnable = YES;
 }
 
