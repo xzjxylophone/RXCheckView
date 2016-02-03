@@ -86,7 +86,7 @@
     CGFloat ivY = (height - ivHeight) / 2.0f;
     CGFloat lblY = (height - lblHeight) / 2.0f;
     CGFloat lblX = ivWidth + self.offset;
-        
+    
     
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, ivY, ivWidth, ivHeight)];
     self.label.frame = CGRectMake(lblX, lblY, lblWidth, lblHeight);
@@ -97,6 +97,15 @@
     
     self.selected = self.selected;
     
+    // 手写设置frame的时候
+    [self judgeBackgroundViewFrame];
+    
+    [self addSubview:self.backgroundView];
+}
+
+
+- (void)judgeBackgroundViewFrame
+{
     
     CGFloat width = self.frame.size.width;
     CGFloat vBgX = 0;
@@ -116,10 +125,14 @@
     CGRect vBgFrame = self.backgroundView.frame;
     vBgFrame.origin.x = vBgX;
     self.backgroundView.frame = vBgFrame;
-    
-    [self addSubview:self.backgroundView];
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    // xib的时候
+    [self judgeBackgroundViewFrame];
+}
 
 
 
